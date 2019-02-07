@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    h1= title
+    p Welcome to #{title}
+
+    h2=details.Name
+
+    if details.param.length >= 1
+        p To run this script please fill in the paramerters
+        each p in details.param
+            div(class='form-group')
+                label(for=`${p.Name}`) [#{p.ParamType}] #{p.Name}
+                input(class='form-control' type=`${p.formType}` placeholder='Hello World!' name=`${p.Name}`)
+    else
+
+            
+    br
+    button(onclick=`runScript(${details.ScriptPath}, )`) Run Script
+
+    script(src='../scripts/HelloWorld.js')
+    
