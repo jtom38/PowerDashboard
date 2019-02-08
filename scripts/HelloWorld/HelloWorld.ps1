@@ -5,6 +5,9 @@ param (
 
 if( [System.String]::IsNullOrEmpty($Echo) -eq $true){
     Write-Host "Hello World!"
+    Write-Host "Hello World!"
+    Write-Host "Hello World!"
+    Write-Host "Hello World!"
 }
 else {
     Write-Host $Echo

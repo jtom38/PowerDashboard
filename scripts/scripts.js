@@ -3,7 +3,8 @@ var scripts = {
     "Scripts": [
         {
             "Name": "HelloWorld",
-            "jsPath": "../public/scripts/HelloWorld.js",
+            "ps1Path": "./scripts/HelloWorld/HelloWorld.ps1",
+            "logPath": "./scripts/HelloWorld/HelloWorld.log",
             "param": [
                 {
                     "Name": "Echo",

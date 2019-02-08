@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "build": "webpack -p"
+    "build": "webpack --config webpack.config.js",
+    "pack": "webpack"
   },
   "dependencies": {
     "acorn": "^6.0.7",
     "acorn-dynamic-import": "^4.0.0",
+    "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
@@ -23,6 +25,7 @@
   },
   "devDependencies": {
     "webpack": "^4.29.3",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.14"
   }
 }
