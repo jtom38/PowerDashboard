@@ -3,9 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "build": "webpack -p"
   },
   "dependencies": {
+    "acorn": "^6.0.7",
+    "acorn-dynamic-import": "^4.0.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
@@ -15,6 +18,11 @@
     "node-powershell": "^3.3.1",
     "nodemon": "^1.18.9",
     "powershell": "^2.3.1",
-    "pug": "^2.0.3"
+    "pug": "^2.0.3",
+    "requirejs": "^2.3.6"
+  },
+  "devDependencies": {
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
   }
 }
