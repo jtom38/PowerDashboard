@@ -8,19 +8,23 @@ function runScript(PathScript, Args, logPath ){
         executionPolicy: 'Bypass',
         noProfile: true
     });
-
-    //ps.addCommand('ls')
     
+    let a = Object.keys(Args);
+    a.forEach(key =>{
+        if(Args[key] == ""){
+
+        }
+    });
+
     if( Args == undefined){
         //let p = path.resolve(PathScript)
         ps.addCommand(PathScript);
-    }else {
+    } else {
         ps.addCommand(PathScript, [
             Args
             //{Echo: 'Testing from node!'}
         ]);
     }
-    
 
     ps.invoke()
     .then(output =>{
@@ -29,8 +33,8 @@ function runScript(PathScript, Args, logPath ){
             console.log(output);
         });      
     })
-    .catch(err => {
-        console.error(err);
+    .catch(err => { 
+        console.log(err);
         ps.dispose();
     })
 }
