@@ -1,0 +1,15 @@
+extends layout
+
+block content
+
+  section(class="hero is-info")
+    div(class="hero-body")
+      div(class="container")
+        h1(class="title")=details.Name
+        h2(class="subtitle")=details.Description
+
+  div(class="container")
+    h2 Script has been told to run
+
+    a(class='button', href="/scripts/"+details.Name) View Script
+    a(class='button', href="/scripts/"+details.Name+"/logs") View Logs

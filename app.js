@@ -5,14 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 //var bodyParser = require('body-parser');
 
-var indexRouter = require('./routes/indexRouter');
-var usersRouter = require('./routes/users');
-var scriptsRouter = require('./routes/scriptsRouter');
+var indexRouter = require('./src/routes/indexRouter');
+var usersRouter = require('./src/routes/users');
+var scriptsRouter = require('./src/routes/scriptsRouter');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '/src/views'));
 app.set('view engine', 'pug');
 
 // Set where scripts are located

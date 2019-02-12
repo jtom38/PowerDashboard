@@ -9,21 +9,25 @@ function runScript(PathScript, Args, logPath ){
         noProfile: true
     });
     
+    console.log(Args);
+    
+    let ArgsArray = [];
     let a = Object.keys(Args);
     a.forEach(key =>{
-        if(Args[key] == ""){
-
+        if(Args[key] != ""){
+            //let s = `{${key}: ${Args[key]}},`;
+            let s = `${key} ${Args[key]}`;
+            ArgsArray.push(s);
         }
     });
+    
 
     if( Args == undefined){
         //let p = path.resolve(PathScript)
         ps.addCommand(PathScript);
     } else {
-        ps.addCommand(PathScript, [
-            Args
-            //{Echo: 'Testing from node!'}
-        ]);
+        //{Echo: 'Testing from node!'}
+        ps.addCommand(PathScript, ArgsArray);
     }
 
     ps.invoke()
