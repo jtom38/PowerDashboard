@@ -10,4 +10,10 @@ router.get('/', function(req, res, next) {
     scripts: avilableScripts});
 });
 
+router.get('/about', function (req,res,next) {
+  res.render('indexAbout', {
+    title: 'About'
+  });
+});
+
 module.exports = router;
