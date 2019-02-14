@@ -37,8 +37,11 @@ $footer-background-color: $dark-background;
 $navbar-background-color: $dark-header;
 $navbar-item-color: $beige-light;
 
-@import "../../node_modules//bulma/sass/utilities/_all.sass";
-@import "../../node_modules/bulma/sass/base/_all.sass";
-@import "../../node_modules/bulma/sass/components/navbar.sass";
-@import "../../node_modules/bulma/sass/elements/_all.sass";
-@import "../../node_modules/bulma/sass/layout/_all.sass"
+// Title 
+$title-color: $beige-light;
+
+@import "../../../node_modules//bulma/sass/utilities/_all.sass";
+@import "../../../node_modules/bulma/sass/base/_all.sass";
+@import "../../../node_modules/bulma/sass/components/navbar.sass";
+@import "../../../node_modules/bulma/sass/elements/_all.sass";
+@import "../../../node_modules/bulma/sass/layout/_all.sass"
