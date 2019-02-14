@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var PowerShell = require('../PowerShell');
+var PowerShell = require('../../src/PowerShell');
 
 var avilableScripts = require('../../scripts/scripts');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('scriptsIndex', { 
-    title: 'Express',
+  res.render('./scripts/index', { 
+    title: 'Available Scripts',
     scripts: avilableScripts});
 });
 
@@ -19,7 +19,7 @@ router.get('/:script/', function (req, res, next) {
     if (element.Name == title.script){
 
       // This is bad use but if we find the element we want we will move forward
-      res.render('scriptsInfo', {
+      res.render('./scripts/info', {
         title: title.script,
         details: element,
       });
@@ -37,7 +37,7 @@ router.get('/:script/details', function (req, res, next) {
     if (element.Name == title.script){
 
       // This is bad use but if we find the element we want we will move forward
-      res.render('scriptsDetails', {
+      res.render('./scripts/details', {
         title: title.script,
         details: element,
       });
@@ -76,7 +76,7 @@ router.post('/:script/run', function (req, res, next) {
       }
       
       // This is bad use but if we find the element we want we will move forward
-      res.render('scriptRun', {
+      res.render('./scripts/run', {
         title: title.script,
         details: element,
       });
@@ -85,12 +85,6 @@ router.post('/:script/run', function (req, res, next) {
 
   });
 });
-
-router.get('/queuescript', function (req, res, next) {
-
-  res.render('queuescript');
-  
-})
 
 router.get('/readyscript/:script/logs'), function (req, res, next) {
   

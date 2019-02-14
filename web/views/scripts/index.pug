@@ -1,6 +1,7 @@
-extends layout
+extends ../layout
 
 block content
+
   each item in scripts.Scripts
     br
 
@@ -9,7 +10,6 @@ block content
         div(class="container")
           h1(class="title")=item.Name
           h2(class="subtitle")=item.Description
-          h2(class="subtitle")=item.Tags
 
     div(class="container")
       br

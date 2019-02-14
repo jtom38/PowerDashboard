@@ -5,14 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 //var bodyParser = require('body-parser');
 
-var indexRouter = require('./src/routes/indexRouter');
-var usersRouter = require('./src/routes/users');
-var scriptsRouter = require('./src/routes/scriptsRouter');
+var indexRouter = require('./web/routes/indexRouter');
+var usersRouter = require('./web/routes/users');
+var scriptsRouter = require('./web/routes/scriptsRouter');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, '/src/views'));
+app.set('views', path.join(__dirname, './web/views'));
 app.set('view engine', 'pug');
 
 // Set where scripts are located
@@ -22,7 +22,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, './web/public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

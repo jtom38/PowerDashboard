@@ -9,6 +9,7 @@ $beige-light: #D0D1CD;
 $beige-lighter: #EFF0EB;
 
 $dark-background: #1f1f1f;
+$dark-header: #0f0f0f;
 
 // Update Bulma's global variables
 $family-sans-serif: "Nunito", sans-serif, ;
@@ -31,6 +32,10 @@ $label-color: $beige-light;
 
 // Footer
 $footer-background-color: $dark-background;
+
+// Navbar
+$navbar-background-color: $dark-header;
+$navbar-item-color: $beige-light;
 
 @import "../../node_modules//bulma/sass/utilities/_all.sass";
 @import "../../node_modules/bulma/sass/base/_all.sass";

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "sass": "node-sass --omit-source-map-url public/sass/siteStyle.scss public/stylesheets/style.css",
-    "start": "nodemon ./bin/www",
+    "start": "nodemon ./web/www",
     "build": "webpack --config webpack.config.js",
     "pack": "webpack"
   },

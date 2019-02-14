@@ -910,7 +910,7 @@ a.has-text-danger:hover, a.has-text-danger:focus {
   box-shadow: none !important; }
 
 .navbar {
-  background-color: white;
+  background-color: #0f0f0f;
   min-height: 3.25rem;
   position: relative;
   z-index: 30; }
@@ -1358,7 +1358,7 @@ body.has-navbar-fixed-bottom {
   overflow-y: hidden; }
 
 .navbar-burger {
-  color: #757763;
+  color: #D0D1CD;
   cursor: pointer;
   display: block;
   height: 3.25rem;
@@ -1396,7 +1396,7 @@ body.has-navbar-fixed-bottom {
 
 .navbar-item,
 .navbar-link {
-  color: #757763;
+  color: #D0D1CD;
   display: block;
   line-height: 1.5;
   padding: 0.5rem 0.75rem;
@@ -1477,7 +1477,7 @@ a.navbar-item,
   .navbar-link::after {
     display: none; }
   .navbar-menu {
-    background-color: white;
+    background-color: #0f0f0f;
     box-shadow: 0 8px 16px rgba(10, 10, 10, 0.1);
     padding: 0.5rem 0; }
     .navbar-menu.is-active {

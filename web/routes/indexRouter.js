@@ -1,17 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
-var avilableScripts = require('../../scripts/scripts');
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { 
-    title: 'Express',
-    scripts: avilableScripts});
+  res.render('./index/index', { 
+    title: 'Express'});
 });
 
 router.get('/about', function (req,res,next) {
-  res.render('indexAbout', {
+  res.render('./index/about', {
     title: 'About'
   });
 });
