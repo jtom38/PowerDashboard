@@ -8,16 +8,13 @@ function GenerateTables(){
 
 function RunMigration00(){
     // This handles the first round of table edits
-    db.run("CREATE TABLE `tasks_finished` ( `ID` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `ScriptName` TEXT NOT NULL, `TimeFinished` TEXT )")
-    db.run("CREATE TABLE `tasks_pending` ( `ID` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `ScriptName` TEXT NOT NULL, `TimeStarted` TEXT )")
+    db.run("CREATE TABLE `logs` ( `ID` INTEGER PRIMARY KEY AUTOINCREMENT, `Task` TEXT, `TaskID` INTEGER )");
+    db.run("CREATE TABLE `tasks` ( `ID` INTEGER PRIMARY KEY AUTOINCREMENT, `Name` TEXT, `Status` TEXT, `StartTime` TEXT, `FinishTime` TEXT, `LogData` INTEGER )");
+    db.close();
 }
 
 function RunMigration01(){
 
 }
 
-function GetData(table){
-    
-}
-
-module.exports = { GenerateTables, GetData }
+module.exports = { GenerateTables }

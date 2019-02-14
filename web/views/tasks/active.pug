@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+
+  div(class='container')
+    if tasks.length >= 1
+      each r in tasks
+        h3=r.ScriptName
+        h3=r.TimeStarted
+    else
+      h3(class='is-centered') No active tasks running.
+        

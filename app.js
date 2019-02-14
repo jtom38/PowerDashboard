@@ -8,6 +8,11 @@ var logger = require('morgan');
 var indexRouter = require('./web/routes/indexRouter');
 var usersRouter = require('./web/routes/users');
 var scriptsRouter = require('./web/routes/scriptsRouter');
+var tasksRouter = require('./web/routes/tasksRouter');
+
+// load the db
+var sql = require('./src/sqlite/init')
+sql.GenerateTables();
 
 var app = express();
 
@@ -27,6 +32,7 @@ app.use(express.static(path.join(__dirname, './web/public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/scripts', scriptsRouter);
+app.use('/tasks', tasksRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
