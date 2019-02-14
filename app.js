@@ -11,8 +11,8 @@ var scriptsRouter = require('./web/routes/scriptsRouter');
 var tasksRouter = require('./web/routes/tasksRouter');
 
 // load the db
-var sql = require('./src/sqlite/init')
-sql.GenerateTables();
+//var sql = require('./src/sqlite/init')
+//sql.GenerateTables();
 
 var app = express();
 

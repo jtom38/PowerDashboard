@@ -1,3 +1,16 @@
 extends ../layout
 
 block content
+  section(class="hero is-info")
+    div(class="hero-body")
+      div(class="container")
+        h1(class="title") Tasks: History
+        h2(class="subtitle") Displays all finished tasks.
+
+  br
+  div(class='container')
+    if tasks.length >= 1
+      each r in tasks
+        h3 #{r.Name} - #{r.Status} - #{r.StartTime}
+    else
+      h3(class='is-centered') No active tasks running.

@@ -1,3 +1,4 @@
+"use strict";
 
 let dt = new Date();
 
@@ -6,3 +7,16 @@ function GetDateTime(){
 }
 
 module.exports = { GetDateTime }
+/*
+class DateTime {
+    constructor() {
+
+    }
+
+    returnDateTime(){
+        return `${dt.toLocaleDateString()} ${dt.toLocaleTimeString()}`;
+    }
+}
+
+module.exports = {DateTime}
+*/

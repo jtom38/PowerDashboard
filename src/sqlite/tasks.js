@@ -11,8 +11,12 @@ function Select(){
     });
 }
 
-function Insert(){
-    //db.run()
+function Insert(Name, Status, StartTime,FinishTime){
+    db.run("insert into tasks ( Name, Status, StartTime,FinishTime,LogData) Values ( 'HelloWorld', 'Active', '02/14/2019 03:01:00 PM', '', 1)")
+}
+
+function Update(ID){
+    db.run("insert into tasks ( Name, Status, StartTime,FinishTime,LogData) Values ( 'HelloWorld', 'Active', '02/14/2019 03:01:00 PM', '', 1)")
 }
 
 module.exports = {Select};

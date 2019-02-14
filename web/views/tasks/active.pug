@@ -2,11 +2,17 @@ extends ../layout
 
 block content
 
+  section(class="hero is-info")
+    div(class="hero-body")
+      div(class="container")
+        h1(class="title") Active Tasks
+        h2(class="subtitle") Displays all the currently running tasks
+
+  br
   div(class='container')
     if tasks.length >= 1
       each r in tasks
-        h3=r.ScriptName
-        h3=r.TimeStarted
+        h3 #{r.Name} - #{r.Status} - #{r.StartTime}
     else
       h3(class='is-centered') No active tasks running.
         
