@@ -24,7 +24,8 @@
     "nodemon": "^1.18.10",
     "pug": "^2.0.3",
     "requirejs": "^2.3.6",
-    "sqlite3": "^4.0.6"
+    "sqlite3": "^4.0.6",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "webpack": "^4.29.3",

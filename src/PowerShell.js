@@ -2,6 +2,8 @@
 const Shell = require('node-powershell');
 const path = require('path');
 const fs = require('fs');
+const uuid = require('uuid/v4');
+const sqlTasks = require('./sqlite/tasks');
 
 function runScript(PathScript, Args, logPath ){
     let ps = new Shell({
@@ -9,18 +11,15 @@ function runScript(PathScript, Args, logPath ){
         noProfile: true
     });
     
-    console.log(Args);
-    
-    let ArgsArray = [];
-    let a = Object.keys(Args);
-    a.forEach(key =>{
-        if(Args[key] != ""){
-            //let s = `{${key}: ${Args[key]}},`;
-            let s = `${key} ${Args[key]}`;
-            ArgsArray.push(s);
-        }
+    // Process the args and replace what we got so we can use it with PS
+    ParseArgs(Args, function (ArgsArray) {
+        Args = ArgsArray;
     });
     
+    // Generate a new ID for SQL
+    let guid = uuid();
+
+    sqlTasks.Insert()
 
     if( Args == undefined){
         //let p = path.resolve(PathScript)
@@ -31,16 +30,32 @@ function runScript(PathScript, Args, logPath ){
     }
 
     ps.invoke()
-    .then(output =>{
-        fs.appendFile(logPath, '\n'+output, (err)=>{
-            if(err) throw err;
-            console.log(output);
-        });      
+    .then(output => {
+        // Update the record that we finished
+
+        // Load the results we got back into logs with the guid
     })
     .catch(err => { 
         console.log(err);
         ps.dispose();
     })
+}
+
+function ParseArgs(Args, Callback){
+    let ArgsArray = [];
+    let a = Object.keys(Args);
+    a.forEach(key =>{
+        if(Args[key] != ""){
+            //let s = `{${key}: ${Args[key]}},`;
+            let s = `${key} ${Args[key]}`;
+            ArgsArray.push(s);
+        }
+    });
+    return Callback(ArgsArray);
+}
+
+function InsertIntoTasks() {
+
 }
 
 module.exports.runScript = runScript;
