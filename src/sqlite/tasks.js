@@ -1,8 +1,16 @@
 let sql = require('sqlite3').verbose();
 let db = new sql.Database("db.sqlite");
 
-function SelectAll(callback) {
+function SelectAllActive(callback) {
     db.all("select * from 'tasks' where Status = 'Active'", function (err, rows) {
+        if(err) { return callback(err); }
+        return callback(null, rows);
+        //return rows;
+    });
+}
+
+function SelectAllFinished(callback) {
+    db.all("select * from 'tasks' where Status = 'Finished'", function (err, rows) {
         if(err) { return callback(err); }
         return callback(null, rows);
         //return rows;
@@ -31,7 +39,8 @@ function Update(ID){
 }
 
 module.exports = { 
-    SelectAll, 
+    SelectAllActive,
+    SelectAllFinished,
     SelectWhere, 
     Insert, 
     Update

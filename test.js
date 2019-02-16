@@ -1,6 +1,7 @@
 let sql = require('./src/sqlite/init');
-let tasksPending = require('./src/sqlite/tasks');
-//let tasksActive = require('./src/sqlite/')
+let tasks = require('./src/sqlite/tasks');
+
+sql.GenerateTables();
 
 let DateTime = require('./src/DateTime');
 DateTime.GetDateTime();
