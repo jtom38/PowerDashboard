@@ -136,6 +136,19 @@ var scripts = {
             "Notes": [
                 "All fields are required for this process."
             ]
+        },
+        {
+            "Name": "Get-DiskInfo",
+            "ps1Path": "./scripts/Get-DiskInfo.ps1",
+            "logPath": "./scripts/Get-DiskInfo.log",
+            "param": [
+ 
+            ],
+            "Description" : "This script lets you as an admin force remove a out of office on a user account.",
+            "Tags": "OutOfOffice, Email, Office 365",
+            "Notes": [
+                "All fields are required for this process."
+            ]
         }
     ]
 };

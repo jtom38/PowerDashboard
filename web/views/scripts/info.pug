@@ -34,3 +34,27 @@ block content
         button(class="button" type='submit') Run Script
 
       button(class="button" type='submit') View Logs
+
+      if tasks.length >= 1
+        h4(class='is-4') Script History
+        table(class='table is-fullwidth')
+          thead
+            tr
+              th Name
+              th Status
+              th StartTime
+              th FinishTime
+          tfoot
+            tr          
+              th Name
+              th Status
+              th StartTime
+              th FinishTime
+          tbody        
+            each r in tasks
+              tr
+                td #{r.Name}
+                td #{r.Status}
+                td #{r.StartTime}
+                td #{r.FinishTime}
+                td #{r.LogID}

@@ -3,6 +3,7 @@ var router = express.Router();
 var PowerShell = require('../../src/PowerShell');
 
 var avilableScripts = require('../../scripts/scripts');
+var sqlTasks = require('../../src/sqlite/tasks');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -17,15 +18,17 @@ router.get('/:script/', function (req, res, next) {
 
   avilableScripts.Scripts.forEach(element => {
     if (element.Name == title.script){
+      
+      sqlTasks.SelectWhereName(title.script, function (err, rows) {
+        
+        res.render('./scripts/info', {
+          title: title.script,
+          details: element,
+          tasks: rows
+        });
 
-      // This is bad use but if we find the element we want we will move forward
-      res.render('./scripts/info', {
-        title: title.script,
-        details: element,
       });
-
     }
-
   });
 })
 

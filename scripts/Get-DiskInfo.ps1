@@ -1,4 +1,5 @@
 
 
 $info = [System.IO.DriveInfo]::GetDrives()
-write-host $info
+$json = $info | ConvertTo-Json -Compress
+write-host $json

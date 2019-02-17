@@ -8,9 +8,28 @@ block content
         h2(class="subtitle") Displays all finished tasks.
 
   br
-  div(class='container')
+  div(class='container is-desktop is-vcentered')
     if tasks.length >= 1
-      each r in tasks
-        h3(class='title is-4') #{r.Name} - #{r.Status} - #{r.StartTime}
+      table(class='table is-fullwidth')
+        thead
+          tr
+            th Name
+            th Status
+            th StartTime
+            th FinishTime
+        tfoot
+          tr          
+            th Name
+            th Status
+            th StartTime
+            th FinishTime
+        tbody        
+          each r in tasks
+            tr
+              td #{r.Name}
+              td #{r.Status}
+              td #{r.StartTime}
+              td #{r.FinishTime}
+              td #{r.LogID}
     else
       h3(class='is-centered') No active tasks running.

@@ -64,3 +64,4 @@ typings/
 .sqlite
 .sqlite-journal
 test.js
+*.sqlite

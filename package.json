@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "sql": "",
     "sass": "node-sass --omit-source-map-url web/public/sass/siteStyle.scss web/public/stylesheets/style.css",
     "start": "nodemon ./web/www",
     "build": "webpack --config webpack.config.js",

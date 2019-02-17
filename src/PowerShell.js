@@ -8,12 +8,10 @@ const sqlLogs = require('./sqlite/logs');
 const dt = require('./DateTime');
 const os = require('os');
 
-// This contains the output from the script
-let output = [];
-
 function runScript(PathScript, Name, Args, logPath ){
-
-    // need to combine PathScript and Args in the same string
+    
+    // This contains the output from the script
+    let output = [];
 
     // Process the args and replace what we got so we can use it with PS
     ParseArgs(Args, function (ArgsArray) {
@@ -72,7 +70,7 @@ function runScript(PathScript, Name, Args, logPath ){
 
                             if (output.length != 0){
                                 let logGuid = uuid();
-                                sqlLogs.InsertNewLog(logGuid, Name, guid, code, function (err, res) {
+                                sqlLogs.InsertNewLog(logGuid, Name, guid, output, function (err, res) {
                                     if(err){console.error(err);}
                                     if(res==true){
                                         console.log("script output was saved to tbl.Logs ID: "+logGuid );

@@ -10,6 +10,8 @@ var usersRouter = require('./web/routes/users');
 var scriptsRouter = require('./web/routes/scriptsRouter');
 var tasksRouter = require('./web/routes/tasksRouter');
 
+var apiTasks = require("./web/api/tasksApi");
+
 // load the db
 //var sql = require('./src/sqlite/init')
 //sql.GenerateTables();
@@ -29,10 +31,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, './web/public')));
 
+// Routes with views
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/scripts', scriptsRouter);
 app.use('/tasks', tasksRouter);
+
+// API Routes
+app.use('/api/tasks', apiTasks);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

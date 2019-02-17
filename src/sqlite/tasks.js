@@ -24,6 +24,13 @@ function SelectWhere(callback){
     });
 }
 
+function SelectWhereName(Name, callback){
+    db.all(`select * from 'tasks' where Name = '${Name}'`, function (err, rows) {
+        if(err) { callback(err); }        
+        return callback(null,rows);
+    });
+}
+
 function InsertNewTask(ID, Name, Status, StartTime, callback){
     db.run(`insert into tasks ( ID, Name, Status, StartTime) Values ( '${ID}', '${Name}', '${Status}', '${StartTime}')`, function (err, result) {
        if (err) {return callback(err);}
@@ -42,6 +49,7 @@ module.exports = {
     SelectAllActive,
     SelectAllFinished,
     SelectWhere, 
+    SelectWhereName,
     InsertNewTask, 
     Update
 };
