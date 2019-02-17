@@ -3771,8 +3771,8 @@ a.box:active {
     background-position: -200% 0; } }
 
 .table {
-  background-color: white;
-  color: #363636; }
+  background-color: #1f1f1f;
+  color: #D0D1CD; }
   .table td,
   .table th {
     border: 1px solid #dbdbdb;
@@ -3860,13 +3860,13 @@ a.box:active {
     .table thead td,
     .table thead th {
       border-width: 0 0 2px;
-      color: #363636; }
+      color: #D0D1CD; }
   .table tfoot {
     background-color: transparent; }
     .table tfoot td,
     .table tfoot th {
       border-width: 2px 0 0;
-      color: #363636; }
+      color: #D0D1CD; }
   .table tbody {
     background-color: transparent; }
     .table tbody tr:last-child td,

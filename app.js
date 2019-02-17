@@ -13,10 +13,6 @@ var tasksRouter = require('./web/routes/tasksRouter');
 var apiTasks = require("./web/api/tasksApi");
 var apiLogs = require('./web/api/logsApi');
 
-// load the db
-//var sql = require('./src/sqlite/init')
-//sql.GenerateTables();
-
 var app = express();
 
 // view engine setup

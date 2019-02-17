@@ -65,13 +65,13 @@ Copy the block below and paste it into the file.  Edit the values to conform to 
 }
 ```
 
-Name: Defines the name of the script
-ps1Path: Defines where to find the script file.
-logPath: Defines where to find the log export. - This is subject to change.
-param: This defines all the script parameters to run the script.  Currently, all parameters that are defined should be filled on the GUI to avoid errors.
-param.Name: Defines the name.  Match the param in the script.
-param.ParamType: Defines what the type is that PS is looking for.
-param.formType: Defines how the GUI will handle that field.
-Description: Gives the GUI something to display about your script.
-Tags: Currently this is a string value.  Working to get this as a searchable value.
-Notes: When someone wants to run this script this will be displayed.
+* Name: Defines the name of the script
+* ps1Path: Defines where to find the script file.
+* logPath: Defines where to find the log export. - This is subject to change.
+* param: This defines all the script parameters to run the script.  Currently, all parameters that are defined should be filled on the GUI to avoid errors.
+* param.Name: Defines the name.  Match the param in the script.
+* param.ParamType: Defines what the type is that PS is looking for.
+* param.formType: Defines how the GUI will handle that field.
+* Description: Gives the GUI something to display about your script.
+* Tags: Currently this is a string value.  Working to get this as a searchable value.
+* Notes: When someone wants to run this script this will be displayed.

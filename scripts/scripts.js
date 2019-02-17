@@ -1,4 +1,8 @@
 
+/*
+This is the file you want to edit to add a new script into the program.
+*/
+
 var scripts = {
     "Scripts": [
         {
