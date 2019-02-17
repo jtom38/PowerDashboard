@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
     scripts: avilableScripts});
 });
 
+// /scripts/ScriptName
 router.get('/:script/', function (req, res, next) {
 
   let title = req.params
@@ -19,7 +20,7 @@ router.get('/:script/', function (req, res, next) {
   avilableScripts.Scripts.forEach(element => {
     if (element.Name == title.script){
       
-      sqlTasks.SelectWhereName(title.script, function (err, rows) {
+      sqlTasks.SelectJoinLogs(title.script, function (err, rows) {
         
         res.render('./scripts/info', {
           title: title.script,

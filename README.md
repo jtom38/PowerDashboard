@@ -31,7 +31,47 @@ Once you have everything generated from the scripts you will just need to run np
 
 ## New Scripts
 
-Add your .ps1 file to the scripts folder.
+Add your .ps1 file to the scripts folder.  You can place them within folders if you want to keep things clean.
 Open scripts.js in a text editor.
+Copy the block below and paste it into the file.  Edit the values to conform to your script.
 
+```json
+,{
+    "Name": "Remove-OutOfOffice",
+    "ps1Path": "./scripts/Remove-OutOfOffice.ps1",
+    "logPath": "./scripts/Remove-OutOfOffice.log",
+    "param": [
+        {
+            "Name": "GlobalAdminUserName",
+            "ParamType": "string",
+            "formType": 'text'
+        },
+        {
+            "Name": "GlobalAdminPassword",
+            "ParamType": "string",
+            "formType": 'password'
+        },
+        {
+            "Name": "UserEmail",
+            "ParamType": "string",
+            "formType": 'email'
+        }
+    ],
+    "Description" : "This script lets you as an admin force remove a out of office on a user account.",
+    "Tags": "OutOfOffice, Email, Office 365",
+    "Notes": [
+        "All fields are required for this process."
+    ]
+}
+```
 
+Name: Defines the name of the script
+ps1Path: Defines where to find the script file.
+logPath: Defines where to find the log export. - This is subject to change.
+param: This defines all the script parameters to run the script.  Currently, all parameters that are defined should be filled on the GUI to avoid errors.
+param.Name: Defines the name.  Match the param in the script.
+param.ParamType: Defines what the type is that PS is looking for.
+param.formType: Defines how the GUI will handle that field.
+Description: Gives the GUI something to display about your script.
+Tags: Currently this is a string value.  Working to get this as a searchable value.
+Notes: When someone wants to run this script this will be displayed.

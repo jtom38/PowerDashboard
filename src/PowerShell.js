@@ -69,11 +69,10 @@ function runScript(PathScript, Name, Args, logPath ){
                             console.log("Updated that we finished our task.");
 
                             if (output.length != 0){
-                                let logGuid = uuid();
-                                sqlLogs.InsertNewLog(logGuid, Name, guid, output, function (err, res) {
+                                sqlLogs.InsertNewLog(guid, Name, output, function (err, res) {
                                     if(err){console.error(err);}
                                     if(res==true){
-                                        console.log("script output was saved to tbl.Logs ID: "+logGuid );
+                                        console.log("script output was saved to tbl.Logs ID: "+guid );
                                     }
                                 });
                             }
@@ -91,7 +90,6 @@ function ParseArgs(Args, Callback){
     let a = Object.keys(Args);
     a.forEach(key =>{
         if(Args[key] != ""){
-            //let s = `{${key}: ${Args[key]}},`;
             let s = ` -${key} ${Args[key]}`;
             ArgsArray.push(s);
         }

@@ -8,20 +8,21 @@ function init(callback){
         if(err ) { console.error(err); }
         if (res == true) {
             console.log("tbl.Logs was updated");
+
+            EditTasks(function(err,res){
+                if(err) { console.error(err); }
+                if (res == true) {
+                    console.log("tbl.Tasks was updated");
+
+                    callback(null, true);
+                }
+            });
         }
     });
-
-    EditTasks(function(err,res){
-        if(err) { console.error(err); }
-        if (res == true) {
-            console.log("tbl.Tasks was updated");
-        }
-    });
-
 }
 
 function EditLogs(callback){
-    let cmd = "CREATE TABLE 'logs' ( `ID` TEXT NOT NULL, `Task` TEXT, `TaskID` TEXT, `Data` TEXT )";
+    let cmd = "CREATE TABLE 'logs' ('LogsID' TEXT NOT NULL, 'Task' TEXT, 'Data' TEXT, PRIMARY KEY('LogsID') )";
     db.run(cmd, function (err, result) {
         if(err) { return callback(err) }
         return callback(null, true);
@@ -29,7 +30,7 @@ function EditLogs(callback){
 }
 
 function EditTasks(callback){
-    let cmd = "CREATE TABLE 'tasks' ( `ID` TEXT NOT NULL, `Name` TEXT, `Status` TEXT, `StartTime` TEXT, `FinishTime` TEXT, `LogID` TEXT, PRIMARY KEY(`ID`) )";
+    let cmd = "CREATE TABLE 'tasks' ('TasksID' TEXT NOT NULL,'Name' TEXT, 'Status' TEXT,'StartTime' TEXT, 'FinishTime' TEXT, PRIMARY KEY('TasksID'))";
     db.run(cmd, function (err, result) {
         if(err){ return callback(err); }
         

@@ -31,15 +31,23 @@ function SelectWhereName(Name, callback){
     });
 }
 
-function InsertNewTask(ID, Name, Status, StartTime, callback){
-    db.run(`insert into tasks ( ID, Name, Status, StartTime) Values ( '${ID}', '${Name}', '${Status}', '${StartTime}')`, function (err, result) {
+function SelectJoinLogs(Script,callback){
+    let cmd = `select * from tasks inner join logs on logs.LogsID = tasks.TasksID where Name = '${Script}'`;
+    db.all(cmd, function (err, rows) {
+        if(err){callback(err);}
+        return callback(null,rows);
+    })
+}
+
+function InsertNewTask(TasksID, Name, Status, StartTime, callback){
+    db.run(`insert into tasks ( TasksID, Name, Status, StartTime) Values ( '${TasksID}', '${Name}', '${Status}', '${StartTime}')`, function (err, result) {
        if (err) {return callback(err);}
        return callback(null, true);
     });
 }
 
-function Update(ID, FinishTime, callback){
-    db.run(`update tasks set Status = 'Finished', FinishTime= '${FinishTime}', LogID = '${ID}' Where ID = '${ID}'`, function (err, result) {
+function Update(TasksID, FinishTime, callback){
+    db.run(`update tasks set Status = 'Finished', FinishTime= '${FinishTime}' Where TasksID = '${TasksID}'`, function (err, result) {
         if (err) {return callback(err);}
         return callback(null, true);
     })
@@ -50,6 +58,7 @@ module.exports = {
     SelectAllFinished,
     SelectWhere, 
     SelectWhereName,
+    SelectJoinLogs,
     InsertNewTask, 
     Update
 };

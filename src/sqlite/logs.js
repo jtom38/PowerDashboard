@@ -6,24 +6,22 @@ function SelectAll(callback) {
     db.all(`select * from '${table}' where Status = 'Active'`, function (err, rows) {
         if(err) { return callback(err); }
         return callback(null, rows);
-        //return rows;
     });
 }
 
-function SelectID(ID, callback){
-    db.all(`select * from '${table}' where ID = '${ID}'`, function (err, rows) {
+function SelectID(LogsID, callback){
+    db.all(`select * from '${table}' where LogsID = '${LogsID}'`, function (err, rows) {
         if(err) { callback(err); }        
         return callback(null,rows);
     });
 }
 
-function InsertNewLog(ID, Task, TaskID, Data, callback){
-    db.run(`insert into '${table}' ( ID, Task, TaskID, Data) Values ( '${ID}', '${Task}', '${TaskID}', '${Data}')`, function (err, result) {
+function InsertNewLog(LogsID, Task, Data, callback){
+    db.run(`insert into '${table}' ( LogsID, Task, Data) Values ( '${LogsID}', '${Task}', '${Data}')`, function (err, result) {
        if (err) {return callback(err);}
        return callback(null, true);
     });
 }
-
 
 module.exports = { 
     SelectAll,
