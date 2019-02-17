@@ -40,6 +40,12 @@ $navbar-item-color: $beige-light;
 // Title 
 $title-color: $beige-light;
 
+// Tables
+$table-color: $beige-light;
+$table-background-color: $dark-background;
+$table-head-cell-color: $beige-light;
+$table-foot-cell-color: $beige-light;
+
 @import "../../../node_modules//bulma/sass/utilities/_all.sass";
 @import "../../../node_modules/bulma/sass/base/_all.sass";
 @import "../../../node_modules/bulma/sass/components/navbar.sass";

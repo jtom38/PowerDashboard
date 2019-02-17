@@ -11,6 +11,7 @@ var scriptsRouter = require('./web/routes/scriptsRouter');
 var tasksRouter = require('./web/routes/tasksRouter');
 
 var apiTasks = require("./web/api/tasksApi");
+var apiLogs = require('./web/api/logsApi');
 
 // load the db
 //var sql = require('./src/sqlite/init')
@@ -39,6 +40,7 @@ app.use('/tasks', tasksRouter);
 
 // API Routes
 app.use('/api/tasks', apiTasks);
+app.use('/api/logs', apiLogs);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

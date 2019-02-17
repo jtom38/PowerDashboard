@@ -4,6 +4,7 @@ var PowerShell = require('../../src/PowerShell');
 
 var avilableScripts = require('../../scripts/scripts');
 var sqlTasks = require('../../src/sqlite/tasks');
+var sqlLogs = require('../../src/sqlite/logs');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -79,8 +80,19 @@ router.post('/:script/run', function (req, res, next) {
   });
 });
 
-router.get('/readyscript/:script/logs'), function (req, res, next) {
+router.get('/:script/logs/:LogID',function (req, res, next) {
+  let title = req.params.script;
+  let LogID = req.params.LogID
+  // Get the data from SQL for the :logs
+  sqlLogs.SelectID(LogID, function(err,data){
+
+    res.render('./scripts/logs',{
+      title: title,
+      data: data[0].Data
+    });
   
-}
+  });
+
+});
 
 module.exports = router;

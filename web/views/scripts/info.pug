@@ -57,4 +57,5 @@ block content
                 td #{r.Status}
                 td #{r.StartTime}
                 td #{r.FinishTime}
-                td #{r.Data}
+                td
+                  a(class='button' href=`/scripts/${details.Name}/logs/${r.LogsID}`)

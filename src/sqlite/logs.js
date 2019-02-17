@@ -9,6 +9,20 @@ function SelectAll(callback) {
     });
 }
 
+function SelectAllByName(Task, callback){
+    db.all(`select * from '${table}' where Task = '${Task}'`, function (err, rows) {
+        if(err) { callback(err); }        
+        return callback(null,rows);
+    });
+}
+
+function SelectLogIDByScript(Task, callback){
+    db.all(`select LogsID from '${table}' where Task = '${Task}'`, function (err, rows) {
+        if(err) { callback(err); }        
+        return callback(null,rows);
+    });
+}
+
 function SelectID(LogsID, callback){
     db.all(`select * from '${table}' where LogsID = '${LogsID}'`, function (err, rows) {
         if(err) { callback(err); }        
@@ -25,6 +39,8 @@ function InsertNewLog(LogsID, Task, Data, callback){
 
 module.exports = { 
     SelectAll,
+    SelectAllByName,
+    SelectLogIDByScript,
     SelectID,
     InsertNewLog
 }
