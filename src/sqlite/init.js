@@ -9,4 +9,6 @@ function GenerateTables(){
     migration00.init();
 }
 
+GenerateTables();
+
 module.exports = { GenerateTables }
