@@ -1,0 +1,60 @@
+extends ../layout
+
+block content
+
+  section(class="hero is-info")
+    div(class="hero-body")
+      div(class="container")
+        h1(class="title")=details.Name
+        h2(class="subtitle")=details.Description
+
+  br
+  div(class="container")
+
+    each n in details.Notes
+      p=n
+    
+    br
+
+    form(method='POST' action="/scripts/"+details.Name+"/run")
+      if details.param.length >= 1
+        p To run this script please fill in the paramerters
+        br
+
+        each p in details.param
+          div(class="field")
+            label(class="label" for=`${p.Name}`) #{p.Name}
+            div(class="control")
+              input(class="input" type=`${p.formType}` Name=`${p.Name}`)
+
+        br
+        button(class="button" type='submit') Run Script
+      else
+        br
+        button(class="button" type='submit') Run Script
+
+      button(class="button" type='submit') View Logs
+
+      if tasks.length >= 1
+        h4(class='is-4') Script History
+        table(class='table is-fullwidth')
+          thead
+            tr
+              th Name
+              th Status
+              th StartTime
+              th FinishTime
+          tfoot
+            tr          
+              th Name
+              th Status
+              th StartTime
+              th FinishTime
+          tbody        
+            each r in tasks
+              tr
+                td #{r.Name}
+                td #{r.Status}
+                td #{r.StartTime}
+                td #{r.FinishTime}
+                td #{r.LogID}

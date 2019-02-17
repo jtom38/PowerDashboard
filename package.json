@@ -3,9 +3,17 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "sql": "node ./src/sqlite/init",
+    "sass": "node-sass --omit-source-map-url web/public/sass/siteStyle.scss web/public/stylesheets/style.css",
+    "start": "nodemon ./web/www",
+    "build": "webpack --config webpack.config.js",
+    "pack": "webpack"
   },
   "dependencies": {
+    "acorn": "^6.1.0",
+    "acorn-dynamic-import": "^4.0.0",
+    "body-parser": "^1.18.3",
+    "bulma": "^0.7.4",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
@@ -13,8 +21,18 @@
     "jquery": "^3.3.1",
     "morgan": "~1.9.0",
     "node-powershell": "^3.3.1",
-    "nodemon": "^1.18.9",
+    "node-sass": "^4.11.0",
+    "nodemon": "^1.18.10",
     "powershell": "^2.3.1",
-    "pug": "^2.0.3"
+    "promise": "^8.0.2",
+    "pug": "^2.0.3",
+    "requirejs": "^2.3.6",
+    "sqlite3": "^4.0.6",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.14"
   }
 }

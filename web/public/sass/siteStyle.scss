@@ -1,0 +1,47 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+// Set your brand colors
+$purple: #8A4D76;
+$pink: #FA7C91;
+$brown: #757763;
+$beige-light: #D0D1CD;
+$beige-lighter: #EFF0EB;
+
+$dark-background: #1f1f1f;
+$dark-header: #0f0f0f;
+
+// Update Bulma's global variables
+$family-sans-serif: "Nunito", sans-serif, ;
+$grey-dark: $brown;
+$grey-light: $beige-light;
+$primary: $purple;
+$link: $pink;
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+
+// Update some of Bulma's component variables
+$text: $beige-lighter;
+$body-background-color: $dark-background;
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+
+// Forms
+$label-color: $beige-light;
+
+// Footer
+$footer-background-color: $dark-background;
+
+// Navbar
+$navbar-background-color: $dark-header;
+$navbar-item-color: $beige-light;
+
+// Title 
+$title-color: $beige-light;
+
+@import "../../../node_modules//bulma/sass/utilities/_all.sass";
+@import "../../../node_modules/bulma/sass/base/_all.sass";
+@import "../../../node_modules/bulma/sass/components/navbar.sass";
+@import "../../../node_modules/bulma/sass/elements/_all.sass";
+@import "../../../node_modules/bulma/sass/layout/_all.sass"

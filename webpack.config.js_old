@@ -1,0 +1,10 @@
+var path = request('path');
+
+module.exports = {
+    mode: "production",
+    entry: './HelloWorld.js',
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist')
+    }
+};

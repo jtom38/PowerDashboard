@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+
+  section(class="hero is-info")
+    div(class="hero-body")
+      div(class="container")
+        h1(class="title") PowerDash
+        h2(class="subtitle") Your personalized PowerShell script runner
+
+  section(class='section')
+    div(class='container')
+      h1(class='title') About
+      p PowerDash is a PowerShell webapp that can be ran from the backend to allow for easier execution of scripts.
+      | If you have someone who needs to use PowerShell scripts to maintain the network but would rather not deal with PowerShell then this is a helper to that type of problem.
+
+  div(class="container")
+    br
+    h1 PowerShell Script Dashboard
+
+    p This is a service that lets you trigger PowerShell scripts to handle tasks for you.
+      
+    a(class="button" href="/scripts") Available Scripts

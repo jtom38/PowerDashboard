@@ -1,0 +1,13 @@
+extends layout
+
+block content
+
+  section(class="hero is-info")
+    div(class="hero-body")
+      div(class="container")
+        h1(class="title")=message
+        h2(class="subtitle")=error.status
+
+  div(class="container")
+    br
+    p #{error.stack}
