@@ -62,7 +62,5 @@ typings/
 .DS_Store
 
 .sqlite
-*.sqlite
-db.sqlite
-*.sqlite-journal
+.sqlite-journal
 test.js

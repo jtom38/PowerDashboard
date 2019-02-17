@@ -7,4 +7,4 @@ let DateTime = require('./src/DateTime');
 DateTime.GetDateTime();
 
 //sql.GenerateTables()
-tasksPending.Select();
+//tasksPending.Select();

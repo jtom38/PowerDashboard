@@ -57,22 +57,11 @@ router.post('/:script/run', function (req, res, next) {
     // Check the list of scripts and return the one we are looking for
     if (element.Name == param.script){
 
-      /*
-      // Once we find the one we want, Get the script location
-      let ScriptPath = element.ps1Path
-
-      Object.keys(req.body).forEach(key =>{
-        if(req.body[key] == ""){
-          
-        }
-      });
-      */
-
       if ( req.body == undefined){
-        PowerShell.runScript(element.ps1Path, undefined, element.logPath)
+        PowerShell.runScript(element.ps1Path, title.script, undefined, element.logPath)
       }
       else {
-        PowerShell.runScript(element.ps1Path, req.body, element.logPath)
+        PowerShell.runScript(element.ps1Path, title.script, req.body, element.logPath)
       }
       
       // This is bad use but if we find the element we want we will move forward

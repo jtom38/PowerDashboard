@@ -24,17 +24,17 @@ function SelectWhere(callback){
     });
 }
 
-function Insert(Name, Status, StartTime,FinishTime, callback){
-    db.run("insert into tasks ( Name, Status, StartTime,FinishTime,LogData) Values ( 'HelloWorld', 'Active', '02/14/2019 03:01:00 PM', '', 1)", function (err, result) {
+function InsertNewTask(ID, Name, Status, StartTime, callback){
+    db.run(`insert into tasks ( ID, Name, Status, StartTime) Values ( '${ID}', '${Name}', '${Status}', '${StartTime}')`, function (err, result) {
        if (err) {return callback(err);}
-       return callback(null, result);
+       return callback(null, true);
     });
 }
 
-function Update(ID){
-    db.run("insert into tasks ( Name, Status, StartTime,FinishTime,LogData) Values ( 'HelloWorld', 'Active', '02/14/2019 03:01:00 PM', '', 1)", function (err, result) {
+function Update(ID, FinishTime, callback){
+    db.run(`update tasks set Status = 'Finished', FinishTime= '${FinishTime}', LogID = '${ID}' Where ID = '${ID}'`, function (err, result) {
         if (err) {return callback(err);}
-        return callback(null, result);
+        return callback(null, true);
     })
 }
 
@@ -42,6 +42,6 @@ module.exports = {
     SelectAllActive,
     SelectAllFinished,
     SelectWhere, 
-    Insert, 
+    InsertNewTask, 
     Update
 };

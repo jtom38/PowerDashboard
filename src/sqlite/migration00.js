@@ -1,52 +1,40 @@
 let sql = require('sqlite3').verbose();
-let db = new sql.Database("db.sqlite");
-let Promise = require('process');
+let db = new sql.Database("db.sqlite")
+let Promise = require('promise');
 
-function RunMigration00(Callback){
+function init(callback){
 
-    let p = new Promise( (resolve, reject) => {
-        EditLogs()
-    })
+    EditLogs(function(err, res){
+        if(err ) { console.error(err); }
+        if (res == true) {
+            console.log("tbl.Logs was updated");
+        }
+    });
 
-    // This handles the first round of table edits
-    EditLogs()
-        .then(
-            console.log('Table was updated.')
-        )
-        .then(
-            EditTasks()
-        )
+    EditTasks(function(err,res){
+        if(err) { console.error(err); }
+        if (res == true) {
+            console.log("tbl.Tasks was updated");
+        }
+    });
+
 }
 
-function EditLogs(){
-    return new Promise(function(fulfilled, rejected){
-        try{
-            let cmd = "CREATE TABLE 'logs' ( `ID` TEXT NOT NULL, `Task` TEXT, `TaskID` TEXT, `Data` TEXT )";
-            db.run(cmd, function (err) {
-                if(err) { return rejected; }
-                return fulfilled;
-            });
-        }catch{
-            console.log("Table: logs was already made.");
-            return rejected;
-        }
+function EditLogs(callback){
+    let cmd = "CREATE TABLE 'logs' ( `ID` TEXT NOT NULL, `Task` TEXT, `TaskID` TEXT, `Data` TEXT )";
+    db.run(cmd, function (err, result) {
+        if(err) { return callback(err) }
+        return callback(null, true);
     });
 }
 
-function EditTasks(){
-    return new Promise(function(fulfilled, rejected){
-        try{
-            let cmd = "CREATE TABLE 'tasks' ( `ID` TEXT NOT NULL, `Name` TEXT, `Status` TEXT, `StartTime` TEXT, `FinishTime` TEXT, `LogID` TEXT, PRIMARY KEY(`ID`) )";
-            db.run(cmd, function (err) {
-                if(err){ return rejected; }
-                return fulfilled;
-            });
-        }catch{
-            console.log("Table: tasks was already made")
-            return rejected;
-        }
-        db.close();
-    });
+function EditTasks(callback){
+    let cmd = "CREATE TABLE 'tasks' ( `ID` TEXT NOT NULL, `Name` TEXT, `Status` TEXT, `StartTime` TEXT, `FinishTime` TEXT, `LogID` TEXT, PRIMARY KEY(`ID`) )";
+    db.run(cmd, function (err, result) {
+        if(err){ return callback(err); }
+        
+        return callback(null,true);
+    });   
 }
 
-module.exports = RunMigration00;
+module.exports = { init, EditLogs, EditTasks }

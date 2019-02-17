@@ -10,6 +10,23 @@ function SelectAll(callback) {
     });
 }
 
+function SelectID(ID, callback){
+    db.all(`select * from '${table}' where ID = '${ID}'`, function (err, rows) {
+        if(err) { callback(err); }        
+        return callback(null,rows);
+    });
+}
+
+function InsertNewLog(ID, Task, TaskID, Data, callback){
+    db.run(`insert into '${table}' ( ID, Task, TaskID, Data) Values ( '${ID}', '${Task}', '${TaskID}', '${Data}')`, function (err, result) {
+       if (err) {return callback(err);}
+       return callback(null, true);
+    });
+}
+
+
 module.exports = { 
-    SelectAll 
+    SelectAll,
+    SelectID,
+    InsertNewLog
 }

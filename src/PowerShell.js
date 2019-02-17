@@ -1,44 +1,91 @@
 
-const Shell = require('node-powershell');
+const PowerShell = require('powershell');
 const path = require('path');
 const fs = require('fs');
 const uuid = require('uuid/v4');
 const sqlTasks = require('./sqlite/tasks');
+const sqlLogs = require('./sqlite/logs');
+const dt = require('./DateTime');
+const os = require('os');
 
-function runScript(PathScript, Args, logPath ){
-    let ps = new Shell({
-        executionPolicy: 'Bypass',
-        noProfile: true
-    });
-    
+// This contains the output from the script
+let output = [];
+
+function runScript(PathScript, Name, Args, logPath ){
+
+    // need to combine PathScript and Args in the same string
+
     // Process the args and replace what we got so we can use it with PS
     ParseArgs(Args, function (ArgsArray) {
         Args = ArgsArray;
+
+        let script = PathScript;
+        ArgsArray.forEach(param =>{
+            script = script + param
+        });
+
+        // Generate a new ID for SQL
+        let guid = uuid();
+        let startTime = dt.GetDateTime();
+        sqlTasks.InsertNewTask(guid, Name, 'Active', startTime, function (err, res) {
+            if(err) { console.error(err); }
+            if(res == true){
+
+                // We added our record to sql, yay
+                let ps 
+                if(os.platform == 'win32') {
+                    ps = new PowerShell(script, {
+                        executionPolicy: 'Bypass',
+                        noProfile: true,
+                    });
+                } else {
+                    ps = new PowerShell(script, {
+                        executionPolicy: 'Bypass',
+                        noProfile: true,
+                        PSCore: true
+                    });
+                }
+
+                ps.on("error", err => {
+                    console.error(err);
+                });
+                
+                // Stdout
+                
+                ps.on("output", data => {
+                    console.log(data);
+                    output.push(data);
+                });
+                
+                // Stderr
+                ps.on("error-output", data => {
+                    console.error(data);
+                });
+            
+                ps.on('end', code => {
+                    // Update the task with the time we finished
+                    let finishTime = dt.GetDateTime();
+                    sqlTasks.Update(guid, finishTime, function (err, res) {
+                        if (err) { console.error(err); }
+                        if(res == true) {
+                            console.log("Updated that we finished our task.");
+
+                            if (output.length != 0){
+                                let logGuid = uuid();
+                                sqlLogs.InsertNewLog(logGuid, Name, guid, code, function (err, res) {
+                                    if(err){console.error(err);}
+                                    if(res==true){
+                                        console.log("script output was saved to tbl.Logs ID: "+logGuid );
+                                    }
+                                });
+                            }
+                        }
+                    });
+
+                });
+            }
+        });
     });
-    
-    // Generate a new ID for SQL
-    let guid = uuid();
-
-    sqlTasks.Insert()
-
-    if( Args == undefined){
-        //let p = path.resolve(PathScript)
-        ps.addCommand(PathScript);
-    } else {
-        //{Echo: 'Testing from node!'}
-        ps.addCommand(PathScript, ArgsArray);
-    }
-
-    ps.invoke()
-    .then(output => {
-        // Update the record that we finished
-
-        // Load the results we got back into logs with the guid
-    })
-    .catch(err => { 
-        console.log(err);
-        ps.dispose();
-    })
 }
 
 function ParseArgs(Args, Callback){
@@ -47,15 +94,11 @@ function ParseArgs(Args, Callback){
     a.forEach(key =>{
         if(Args[key] != ""){
             //let s = `{${key}: ${Args[key]}},`;
-            let s = `${key} ${Args[key]}`;
+            let s = ` -${key} ${Args[key]}`;
             ArgsArray.push(s);
         }
     });
     return Callback(ArgsArray);
-}
-
-function InsertIntoTasks() {
-
 }
 
 module.exports.runScript = runScript;
