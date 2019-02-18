@@ -14,11 +14,14 @@ var jobs = {
                 {
                     "Name": "Echo",
                     "ParamType": "string",
-                    "Value": "'Hello Jobs'"
+                    "Value": "'Hello from Jobs'"
                 }
             ],
             "Trigger": {
-                
+                "everyMinute": false,
+                "everyHour": false,
+                "everyDay": false,
+
             }
         }
     ]

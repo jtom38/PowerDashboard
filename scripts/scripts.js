@@ -17,6 +17,9 @@ var scripts = {
                     "formDesc": "Value entered here will be sent to the console."
                 }
             ],
+            "Returns": {
+                "Type": "string || void"
+            },
             "Description" : "This is a test script to return the text that is entered.",
             "Tags": "OS, Debug",
             "Notes": [
@@ -71,6 +74,7 @@ var scripts = {
                 },
                 
             ],
+            "Returns": "bool || void",
             "Description" : "This is a test script to return the text that is entered.",
             "Tags": "SMTP, Email, Debug",
             "Notes": [
@@ -108,6 +112,7 @@ var scripts = {
                     "formType": 'text'
                 }    
             ],
+            "Returns": "bool || void",
             "Description" : "This script lets you as an admin force add a out of office on a user account.",
             "Tags": "OutOfOffice, Email, Office 365",
             "Notes": [
