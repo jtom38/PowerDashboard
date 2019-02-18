@@ -1,21 +1,23 @@
 extends ../layout
 
 block content
+  section(class="hero is-info")
+    div(class="hero-body")
+      div(class="container")
+        h1(class="title") Avilable Scripts
+        h2(class="subtitle") This is the collection of scripts available on the server to use
 
-  each item in scripts.Scripts
-    br
-
-    section(class="hero is-info")
-      div(class="hero-body")
-        div(class="container")
-          h1(class="title")=item.Name
-          h2(class="subtitle")=item.Description
-
-    div(class="container")
-      br
-      h4 Notes: #{item.Notes}
-      h4 Tags: #{item.Tags}
-      br
-      
-      a(class='button', href="/scripts/"+item.Name) View Script
-      a(class='button', href="/scripts/"+item.Name+"/logs") View Logs
+  br
+  div(class="container")
+    each item in scripts.Scripts
+      section(class="section")
+        h1(class="title")=item.Name
+        h2(class="subtitle")=item.Description
+          br
+          h4 Notes: #{item.Notes}
+          h4 Tags: #{item.Tags}
+          br
+          
+          a(class='button', href="/scripts/"+item.Name) View Script
+          a(class='button', href="/scripts/"+item.Name+"/logs") View Logs
+          br

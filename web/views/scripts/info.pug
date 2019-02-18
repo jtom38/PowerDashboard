@@ -35,27 +35,28 @@ block content
 
       button(class="button" type='submit') View Logs
 
-      if tasks.length >= 1
-        h4(class='is-4') Script History
-        table(class='table is-fullwidth')
-          thead
+    if tasks.length >= 1
+      br
+      h4(class='is-4') Script History
+      table(class='table is-fullwidth')
+        thead
+          tr
+            th Name
+            th Status
+            th StartTime
+            th FinishTime
+        tfoot
+          tr          
+            th Name
+            th Status
+            th StartTime
+            th FinishTime
+        tbody        
+          each r in tasks
             tr
-              th Name
-              th Status
-              th StartTime
-              th FinishTime
-          tfoot
-            tr          
-              th Name
-              th Status
-              th StartTime
-              th FinishTime
-          tbody        
-            each r in tasks
-              tr
-                td #{r.Name}
-                td #{r.Status}
-                td #{r.StartTime}
-                td #{r.FinishTime}
-                td
-                  a(class='button' href=`/scripts/${details.Name}/logs/${r.LogsID}`)
+              td #{r.Name}
+              td #{r.Status}
+              td #{r.StartTime}
+              td #{r.FinishTime}
+              td
+                a(class='button' href=`/scripts/${details.Name}/logs/${r.LogsID}`)

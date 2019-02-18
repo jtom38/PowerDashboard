@@ -4,6 +4,25 @@ var router = express.Router();
 let sql = require('sqlite3').verbose();
 let db
 
+router.get('/', function (req, res, next) {
+
+  db = new sql.Database("db.sqlite");
+
+  // Get the records of active
+  db.all("select * from 'tasks' where Status = 'Active'", function (err, active) {
+
+    db.all("select * from 'tasks' where status = 'Finished' order by FinishTime desc limit 100", function (err, finished) {
+      
+      res.render('./tasks/index', { 
+        title: 'Tasks',
+        active: active,
+        history: finished
+      });
+
+    });
+  });
+});
+
 router.get('/active', function(req, res, next) {
   db = new sql.Database("db.sqlite");
 
@@ -24,7 +43,7 @@ router.get('/active', function(req, res, next) {
 router.get('/history', function(req, res, next) {
   db = new sql.Database("db.sqlite");
 
-  db.all("select * from 'tasks' where Status = 'Finished'", function (err, rows) {
+  db.all("select * from 'tasks' where status = 'Finished' order by FinishTime desc limit 100", function (err, rows) {
     if(err) {
       res.render('./tasks/history', { 
         title: 'Tasks: History',
@@ -36,6 +55,5 @@ router.get('/history', function(req, res, next) {
       tasks: rows});
   });
 });
-
 
 module.exports = router;
