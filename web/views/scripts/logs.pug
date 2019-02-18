@@ -1,6 +1,15 @@
 extends ../layout
 
 block content
-    p Hello
+  section(class="hero is-info")
+    div(class="hero-body")
+      div(class="container")
+        h1(class="title")=script.Name
+        h2(class="subtitle")=script.Description
 
-    p #{data}
+  
+  section(class='section')
+    div(class='container')
+
+      each row in data
+        h5(class="is-5") #{row}

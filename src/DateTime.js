@@ -1,8 +1,7 @@
 "use strict";
 
-let dt = new Date();
-
 function GetDateTime(){
+    let dt = new Date();
     return `${dt.toLocaleDateString()} ${dt.toLocaleTimeString()}`;
 }
 

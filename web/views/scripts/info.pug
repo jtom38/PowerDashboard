@@ -23,7 +23,7 @@ block content
 
         each p in details.param
           div(class="field")
-            label(class="label" for=`${p.Name}`) #{p.Name}
+            label(class="label" for=`${p.Name}`) [#{p.ParamType}] #{p.Name}
             div(class="control")
               input(class="input" type=`${p.formType}` Name=`${p.Name}`)
 

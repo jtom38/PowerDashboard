@@ -8,7 +8,7 @@ var scripts = {
         {
             "Name": "HelloWorld",
             "ps1Path": "./scripts/HelloWorld.ps1",
-            "logPath": "./scripts/HelloWorld.log",
+            "logPath": "./scripts/HelloWorld.csv",
             "param": [
                 {
                     "Name": "Echo",

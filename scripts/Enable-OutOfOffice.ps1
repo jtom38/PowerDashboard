@@ -7,6 +7,13 @@ param(
     [string] $InternalMessage
 )
 
+. .\scripts\Modules\Chainsaw\ChainsawClasses.ps1 -Force
+
+$Logger = [Chainsaw]::new()
+$Logger.ConsoleConfig = [ChainsawConsole]::new("#DateTime#, #Level#, #Message#", @("Information", "Warning", "Error", "Debug"))
+$Logger.CsvConfig = [ChainsawCsv]::new(".\scripts\Enable-OutOfOffice.csv", "#DateTime#, #Level#, #Message#", @("Information", "Warning", "Error", "Debug"))
+
+
 $sec = $GlobalAdminPassword | ConvertTo-SecureString -asPlainText -Force
 $O365Creds = [pscredential]::new($GlobalAdminUserName, $sec)
 
@@ -17,11 +24,11 @@ $Session = New-PSSession -ConfigurationName Microsoft.Exchange `
     -AllowRedirection
 
 # Import the session 
-Import-PSSession $Session -DisableNameChecking
+Import-PSSession $Session -DisableNameChecking | Out-Null
 
-Write-Host "Setting values to $($UserEmail)"
-Write-Host "External Message: $($ExternalMessage)"
-Write-Host "Internal Message: $($InternalMessage)"
+$Logger.Info("Setting values to $($UserEmail)")
+$Logger.Info("External Message: $($ExternalMessage)")
+$Logger.Info("Internal Message: $($InternalMessage)")
 
 Set-MailboxAutoReplyConfiguration -Identity $UserEmail `
     -AutoReplyState Enabled `
@@ -29,6 +36,6 @@ Set-MailboxAutoReplyConfiguration -Identity $UserEmail `
     -InternalMessage $InternalMessage
 
 # Disconnects
-Write-Host "Closing the session."
+$Logger.Info("Closing the session.")
 Remove-PSSession $Session
 exit

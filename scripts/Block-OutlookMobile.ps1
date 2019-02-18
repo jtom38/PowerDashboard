@@ -23,4 +23,4 @@ foreach ( $item in $UserEmail){
     Get-CASMailbox -Identity $item | Select *EWS*
 }
 
-Exit-PSSession
+Remove-PSSession $Session

@@ -3,10 +3,11 @@ param (
     [string] $Echo
 )
 
-. .\Modules\Chainsaw\ChainsawClasses.ps1 -Force
+. .\scripts\Modules\Chainsaw\ChainsawClasses.ps1 -Force
+
 $Logger = [Chainsaw]::new()
 $Logger.ConsoleConfig = [ChainsawConsole]::new("#DateTime#, #Level#, #Message#", @("Information", "Warning", "Error", "Debug"))
-$Logger.CsvConfig = [ChainsawCsv]::new(".\HelloWorld.csv", "#DateTime#, #Level#, #Message#", @("Information", "Warning", "Error", "Debug"))
+$Logger.CsvConfig = [ChainsawCsv]::new(".\scripts\HelloWorld.csv", "#DateTime#, #Level#, #Message#", @("Information", "Warning", "Error", "Debug"))
 
 $Logger.Info("Script has started.")
 if( [System.String]::IsNullOrEmpty($Echo) -eq $true -or $Echo -eq ""){
