@@ -88,10 +88,11 @@ router.get('/:script/logs/:LogID',function (req, res, next) {
     // Get the data from SQL for the :logs
     sqlLogs.SelectID(LogID, function(err,data){
 
+      let newData = JSON.parse(data[0].Data);
       res.render('./scripts/logs',{
         title: title,
         script: element,
-        data: data[0].Data
+        data: newData
       });
     
     });

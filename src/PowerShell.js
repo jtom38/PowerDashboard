@@ -69,7 +69,12 @@ function runScript(PathScript, Name, Args, logPath ){
                             console.log("Updated that we finished our task.");
 
                             if (output.length != 0){
-                                sqlLogs.InsertNewLog(guid, Name, output, function (err, res) {
+                                // generate a new object
+                                let obj = {}
+                                // load our array into object and throw it into sql
+                                obj.Output = output;
+                                let objString = JSON.stringify(obj);
+                                sqlLogs.InsertNewLog(guid, Name, objString, function (err, res) {
                                     if(err){console.error(err);}
                                     if(res==true){
                                         console.log("script output was saved to tbl.Logs ID: "+guid );
