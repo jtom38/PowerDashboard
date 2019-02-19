@@ -22,7 +22,7 @@ Nodejs web server that will run PowerShell scripts for you.  This was a tool I w
 Download the source.
 Extract source to a folder
 Open a terminal and navigate to the folder.
-run 'npm install'  this will install node modules
+run 'npm install'  this will install node modules.
 run 'npm run SQL' this will generate the DB for you.
 run 'npm run sass' this will generate the sites CSS file.
 run 'npm run start' to turn on the service.

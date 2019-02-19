@@ -67,4 +67,3 @@ typings/
 test.js
 *.sqlite
 *.css
-web/public/stylesheets/style.css
