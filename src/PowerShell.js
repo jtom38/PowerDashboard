@@ -50,9 +50,15 @@ function runScript(PathScript, Name, Args, logPath ){
                 
                 // Stdout
                 
-                ps.on("output", data => {
-                    console.log(data);
-                    output.push(data);
+                ps.on("output", data => {                    
+                    let s = data.split("\n");
+                    s.forEach(line => {
+                        if(line != ""){
+                            console.log(line);
+                            output.push(line);
+                        }
+                    });
+                    //output.push(`${data},`);
                 });
                 
                 // Stderr
@@ -100,6 +106,10 @@ function ParseArgs(Args, Callback){
         }
     });
     return Callback(ArgsArray);
+}
+
+function ParseOutput(data, Callback){
+
 }
 
 module.exports.runScript = runScript;

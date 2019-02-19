@@ -10,6 +10,8 @@ block content
   
   section(class='section')
     div(class='container')
+      h1(class='title') Log Export
+      h2(class='subtitle') This contains everything that was sent to the console window
 
-      each row in data
-        h5(class="is-5") #{row}
+      each row in data.Output
+        p #{row}

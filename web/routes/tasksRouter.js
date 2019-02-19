@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 //let tasksPending = require('../../src/sqlite/tasksPending');
+//let sqlLogs = require('../../src/sqlite/logs');
+let sqlTasks = require('../../src/sqlite/tasks');
+
 let sql = require('sqlite3').verbose();
 let db
 
@@ -11,14 +14,12 @@ router.get('/', function (req, res, next) {
   // Get the records of active
   db.all("select * from 'tasks' where Status = 'Active'", function (err, active) {
 
-    db.all("select * from 'tasks' where status = 'Finished' order by FinishTime desc limit 100", function (err, finished) {
-      
+    sqlTasks.SelectJoinLogsStatusFinishedTop100(function(err, history){
       res.render('./tasks/index', { 
         title: 'Tasks',
         active: active,
-        history: finished
+        history: history
       });
-
     });
   });
 });

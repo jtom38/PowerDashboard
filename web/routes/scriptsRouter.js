@@ -96,9 +96,7 @@ router.get('/:script/logs/:LogID',function (req, res, next) {
       });
     
     });
-  })
-
-
+  });
 });
 
 function SearchScriptsJson(title, callback){
@@ -108,8 +106,6 @@ function SearchScriptsJson(title, callback){
       callback(null, element);
     }
   });
-
 }
-
 
 module.exports = router;

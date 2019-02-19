@@ -7,10 +7,9 @@ block content
         h1(class="title") Avilable Scripts
         h2(class="subtitle") This is the collection of scripts available on the server to use
 
-  br
-  div(class="container")
-    each item in scripts.Scripts
-      section(class="section")
+  each item in scripts.Scripts
+    section(class="section")
+      div(class="container is-fluid")
         h1(class="title")=item.Name
         h2(class="subtitle")=item.Description
           br

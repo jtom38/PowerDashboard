@@ -3,68 +3,67 @@ extends ../layout
 block content
   section(class="hero is-info")
     div(class="hero-body")
-      div(class="container")
+      div(class="container is-fluid")
         h1(class="title") Tasks
         h2(class="subtitle") Here you will find all currently running tasks and task history.
 
   section(class='section')
-    div(class='container')
+    div(class='container is-fluid')
       h1(class='title') Tasks: Active
       h2(class='subtitle') Showing all currently running tasks.
 
-      div(class='container is-desktop is-vcentered')
-        if active.length >= 1
-          table(class='table is-fullwidth')
-            thead
-              tr
-                th Name
-                th Status
-                th StartTime
-                th FinishTime
-            tfoot
-              tr          
-                th Name
-                th Status
-                th StartTime
-                th FinishTime
-            tbody        
-              each r in active
-                tr
-                  td #{r.Name}
-                  td #{r.Status}
-                  td #{r.StartTime}
-                  td #{r.FinishTime}
-                  td #{r.LogID}
-        else
-          h3(class='is-centered') No active tasks running.
+  div(class='container is-desktop is-vcentered is-fluid')
+    if active.length >= 1
+      table(class='table is-fullwidth')
+        thead
+          tr
+            th Name
+            th Status
+            th StartTime
+        tfoot
+          tr          
+            th Name
+            th Status
+            th StartTime
+        tbody        
+          each r in active
+            tr
+              td #{r.Name}
+              td #{r.Status}
+              td #{r.StartTime}
+    else
+      h3(class='is-centered') No active tasks running.
     
   section(class='section')
-    div(class='container')
+    div(class='container is-fluid')
       h1(class='title') Tasks: History
       h2(class='subtitle') Showing the last 100 tasks that ran.
 
-      div(class='container is-desktop is-vcentered')
-        if history.length >= 1
-          table(class='table is-fullwidth')
-            thead
-              tr
-                th Name
-                th Status
-                th StartTime
-                th FinishTime
-            tfoot
-              tr          
-                th Name
-                th Status
-                th StartTime
-                th FinishTime
-            tbody        
-              each r in history
-                tr
-                  td #{r.Name}
-                  td #{r.Status}
-                  td #{r.StartTime}
-                  td #{r.FinishTime}
-                  td #{r.LogID}
-        else
-          h3(class='is-centered') No active tasks running.
+  div(class='container is-desktop is-vcentered is-fluid')
+    if history.length >= 1
+      table(class='table is-fullwidth')
+        thead
+          tr
+            th Name
+            th Status
+            th StartTime
+            th FinishTime
+            th Logs
+        tfoot
+          tr          
+            th Name
+            th Status
+            th StartTime
+            th FinishTime
+            th Logs
+        tbody        
+          each r in history
+            tr
+              td #{r.Name}
+              td #{r.Status}
+              td #{r.StartTime}
+              td #{r.FinishTime}
+              td
+                a(class='button' href=`/scripts/${r.Name}/logs/${r.LogsID}`) View Logs
+    else
+      h3(class='is-centered') No active tasks running.

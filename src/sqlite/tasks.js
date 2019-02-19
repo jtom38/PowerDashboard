@@ -32,7 +32,15 @@ function SelectWhereName(Name, callback){
 }
 
 function SelectJoinLogs(Script,callback){
-    let cmd = `select * from tasks inner join logs on logs.LogsID = tasks.TasksID where Name = '${Script}'`;
+    let cmd = `select * from tasks inner join logs on logs.LogsID = tasks.TasksID where Name = '${Script}' limit 100`;
+    db.all(cmd, function (err, rows) {
+        if(err){callback(err);}
+        return callback(null,rows);
+    })
+}
+
+function SelectJoinLogsStatusFinishedTop100(callback){
+    let cmd = `select * from tasks inner join logs on logs.LogsID = tasks.TasksID Where Status = 'Finished' limit 100`;
     db.all(cmd, function (err, rows) {
         if(err){callback(err);}
         return callback(null,rows);
@@ -59,6 +67,7 @@ module.exports = {
     SelectWhere, 
     SelectWhereName,
     SelectJoinLogs,
+    SelectJoinLogsStatusFinishedTop100,
     InsertNewTask, 
     Update
 };
