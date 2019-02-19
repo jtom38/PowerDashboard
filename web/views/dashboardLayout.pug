@@ -8,9 +8,12 @@ html
   body
     include header
 
-    nav(class='panel')
-      p(class='panel-heading') header
-
-    block content
+    div(class='columns')
+      div(class="column is-one-third")
+        nav(class='panel')
+          p(class='panel-heading') header
+          div(class='panel-block') thingy?
+      div(class='column')
+        block content
   
     include footer

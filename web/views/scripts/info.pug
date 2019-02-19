@@ -50,12 +50,14 @@ block content
               th Status
               th StartTime
               th FinishTime
+              th Log
           tfoot
             tr          
               th Name
               th Status
               th StartTime
               th FinishTime
+              th Log
           tbody        
             each r in tasks
               tr
@@ -64,4 +66,4 @@ block content
                 td #{r.StartTime}
                 td #{r.FinishTime}
                 td
-                  a(class='button' href=`/scripts/${details.Name}/logs/${r.LogsID}`)
+                  a(class='button' href=`/scripts/${details.Name}/logs/${r.LogsID}`) View Log

@@ -8,7 +8,6 @@ var scripts = {
         {
             "Name": "HelloWorld",
             "ps1Path": "./scripts/HelloWorld.ps1",
-            "logPath": "./scripts/HelloWorld.csv",
             "param": [
                 {
                     "Name": "Echo",
@@ -30,7 +29,6 @@ var scripts = {
         {
             "Name": "Send-MailMessage",
             "ps1Path": "./scripts/Send-MailMessage.ps1",
-            "logPath": "./scripts/Send-MailMessage.log",
             "param": [
                 {
                     "Name": "SmtpServer",
@@ -74,7 +72,6 @@ var scripts = {
                 },
                 
             ],
-            "Returns": "bool || void",
             "Description" : "This is a test script to return the text that is entered.",
             "Tags": "SMTP, Email, Debug",
             "Notes": [
@@ -84,7 +81,6 @@ var scripts = {
         {
             "Name": "Enable-OutOfOffice",
             "ps1Path": "./scripts/Enable-OutOfOffice.ps1",
-            "logPath": "./scripts/Enable-OutOfOffice.log",
             "param": [
                 {
                     "Name": "GlobalAdminUserName",
@@ -122,7 +118,6 @@ var scripts = {
         {
             "Name": "Remove-OutOfOffice",
             "ps1Path": "./scripts/Remove-OutOfOffice.ps1",
-            "logPath": "./scripts/Remove-OutOfOffice.log",
             "param": [
                 {
                     "Name": "GlobalAdminUserName",
@@ -149,7 +144,6 @@ var scripts = {
         {
             "Name": "Get-DiskInfo",
             "ps1Path": "./scripts/Get-DiskInfo.ps1",
-            "logPath": "./scripts/Get-DiskInfo.log",
             "param": [
  
             ],

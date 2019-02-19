@@ -1,4 +1,4 @@
-extends ../dashboardLayout
+extends ../layout
 
 block content
   section(class="hero is-info")
@@ -9,7 +9,7 @@ block content
 
   each item in scripts.Scripts
     section(class="section")
-      div(class="container is-fluid")
+      div(class="container")
         h1(class="title")=item.Name
         h2(class="subtitle")=item.Description
           br
