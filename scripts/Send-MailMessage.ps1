@@ -1,7 +1,7 @@
 
 param(
-    [string] $SmtpServer,
-    [int] $SmtpPort,
+    #[string] $SmtpServer,
+    #[int] $SmtpPort,
     [string] $UserName,
     [string] $Password,
     [string] $From,
@@ -10,6 +10,11 @@ param(
     [string] $Body
 )
 
+$SmtpServer = "smtp.office365.com"
+$SmtpPort = 587
+
+$sec = $Password | ConvertTo-SecureString -asPlainText -Force
+$Creds = [pscredential]::new($UserName, $sec)
 
 
 Send-MailMessage -To $To `
@@ -18,3 +23,4 @@ Send-MailMessage -To $To `
     -Body $Body `
     -SmtpServer $SmtpServer `
     -Port $SmtpPort `
+    -Credential $Creds

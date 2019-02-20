@@ -12,9 +12,6 @@ function SearchScriptsJson(title, callback){
         callback(null, element);
       }
     });
-
-    // if we did not find it, return error
-    callback(Error(`Unable to find ${title}`));
 }
 
 module.exports = {

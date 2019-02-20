@@ -5,17 +5,9 @@ function GetDateTime(){
     return `${dt.toLocaleDateString()} ${dt.toLocaleTimeString()}`;
 }
 
-module.exports = { GetDateTime }
-/*
-class DateTime {
-    constructor() {
-
-    }
-
-    returnDateTime(){
-        return `${dt.toLocaleDateString()} ${dt.toLocaleTimeString()}`;
-    }
+function GetSqlDateTime(callback){
+    let dt = new Date().toISOString().replace();
+    callback(null, dt);
 }
 
-module.exports = {DateTime}
-*/
+module.exports = { GetDateTime }

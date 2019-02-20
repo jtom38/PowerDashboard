@@ -32,7 +32,8 @@ router.get('/:script/', function (req, res, next) {
       res.render('./scripts/info', {
         title: title.script,
         details: ele,
-        tasks: rows
+        tasks: rows,
+        queueAlert: false
       });
     });
   })

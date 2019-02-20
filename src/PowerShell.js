@@ -48,8 +48,7 @@ function runScript(PathScript, Name, Args, logPath ){
                     console.error(err);
                 });
                 
-                // Stdout
-                
+                // Stdout                
                 ps.on("output", data => {                    
                     let s = data.split("\n");
                     s.forEach(line => {

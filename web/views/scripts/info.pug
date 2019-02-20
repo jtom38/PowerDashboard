@@ -10,7 +10,6 @@ block content
 
   br
   div(class="container")
-
     each n in details.Notes
       p=n
     
@@ -25,7 +24,8 @@ block content
           div(class="field")
             label(class="label" for=`${p.Name}`) [#{p.ParamType}] #{p.Name}
             div(class="control")
-              input(class="input" type=`${p.formType}` Name=`${p.Name}`)
+              input(class="input" type=`${p.formType}` Name=`${p.Name}` placeholder=`${p.formPlaceholder}`)
+            p #{p.formDesc}
 
         br
         button(class="button" type='submit') Run Script
