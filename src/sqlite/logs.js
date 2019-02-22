@@ -1,46 +1,31 @@
-let sql = require('sqlite3').verbose();
-let db = new sql.Database("db.sqlite");
-let table = "logs";
+"use strict";
+class LogsRepo{
+    constructor(Sqlite){
+        this.SQLite = Sqlite;
+    }
 
-function SelectAll(callback) {
-    db.all(`select * from '${table}' where Status = 'Active'`, function (err, rows) {
-        if(err) { return callback(err); }
-        return callback(null, rows);
-    });
+    Insert(LogID, Task, Data ){
+        let cmd = `INSERT INTO logs (LogsID, Task, Data)
+            VALUES (${LogID}, ${Task}, ${Data})`;
+        return this.SQLite.run(cmd);
+    }
+
+    GetAllByStatus(Status){
+        let cmd = `SELECT * FROM logs
+            WHERE Status = '${Status}'`;
+        return this.SQLite.all(cmd);
+    }
+
+    GetAllByName(Name){
+        let cmd = `SELECT * From 'logs' WHERE Task = '${Name}'`;
+        return this.SQLite.all(cmd);
+    }
+
+    GetAllByLogsID(LogsID){
+        let cmd = `SELECT * FROM logs
+            WHERE LogsID = '${LogsID}'`;
+        return this.SQLite.all(cmd);
+    }
 }
 
-function SelectAllByName(Task, callback){
-    db.all(`select * from '${table}' where Task = '${Task}'`, function (err, rows) {
-        if(err) { callback(err); }        
-        return callback(null,rows);
-    });
-}
-
-function SelectLogIDByScript(Task, callback){
-    db.all(`select LogsID from '${table}' where Task = '${Task}'`, function (err, rows) {
-        if(err) { callback(err); }        
-        return callback(null,rows);
-    });
-}
-
-function SelectID(LogsID, callback){
-    db.all(`select * from '${table}' where LogsID = '${LogsID}'`, function (err, rows) {
-        if(err) { callback(err); }        
-        return callback(null,rows);
-    });
-}
-
-function InsertNewLog(LogsID, Task, Data, callback){
-    db.run(`insert into '${table}' ( LogsID, Task, Data) Values ( '${LogsID}', '${Task}', '${Data}')`, function (err, result) {
-       if (err) {return callback(err);}
-       return callback(null, true);
-    });
-}
-
-module.exports = { 
-    SelectAll,
-    SelectAllByName,
-    SelectLogIDByScript,
-    SelectID,
-    InsertNewLog
-}
+module.exports = LogsRepo;
