@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-let SQLite = require('../../src/sqlite/sqlite');
-let LogsRepo = require('../../src/sqlite/logs');
+let SQLite = require('../../src/sqlite/SQLite');
+let LogsRepo = require('../../src/sqlite/LogsRepo');
 
-let sqlite = new SQLite('../../db.sqlite');
+let sqlite = new SQLite('./db.sqlite');
 let logsTable = new LogsRepo(sqlite);
 
 
@@ -12,8 +12,8 @@ router.get('/:script/', function(req, res, next) {
   let title = req.params.script;
   //let LogID = req.params.LogID
   
-  let data = logsTable.GetAllByName(title)
-    .then( () => res.status(200).send({
+  logsTable.GetAllByName(title)
+    .then( (data) => res.status(200).send({
       data
     }))
 });

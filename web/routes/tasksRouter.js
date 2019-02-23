@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 //let tasksPending = require('../../src/sqlite/tasksPending');
 //let sqlLogs = require('../../src/sqlite/logs');
-let sqlTasks = require('../../src/sqlite/tasks');
+let sqlTasks = require('../../src/sqlite/TasksRepo');
 
 let sql = require('sqlite3').verbose();
 let db

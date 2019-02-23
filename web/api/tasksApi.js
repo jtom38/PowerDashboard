@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var scriptsJson = require('../../scripts/scripts');
-var sqlTasks = require('../../src/sqlite/tasks');
+var sqlTasks = require('../../src/sqlite/TasksRepo');
 
 // list all avilable scripts
 router.get('/', function(req, res, next) {
