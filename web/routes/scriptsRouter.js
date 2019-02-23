@@ -5,6 +5,8 @@ var Promise = require('bluebird');
 var SQLite = require('../../src/sqlite/SQLite');
 var TasksRepo = require('../../src/sqlite/TasksRepo');
 var LogsRepo = require('../../src/sqlite/LogsRepo');
+const uuid = require('uuid/v4');
+const dt = require('../../src/DateTime');
 
 var avilableScripts = require('../../scripts/scripts');
 var JsonHelper = Promise.promisifyAll(require('../../src/JsonHelper'));
@@ -57,17 +59,6 @@ router.get('/:script/details', async function (req, res, next) {
     title: title.script,
     details: _element
   });
-
-  /*
-  JsonHelper.SearchScriptsJson(title.script, function (err, element) {
-    // This is bad use but if we find the element we want we will move forward
-    
-    res.render('./scripts/details', {
-      title: title.script,
-      details: element,
-    });
-  });
-  */
 });
 
 router.post('/:script/run', async function (req, res, next) {
@@ -77,16 +68,14 @@ router.post('/:script/run', async function (req, res, next) {
   let param = req.params;
   let body = req.body;
 
+  let jsonBody = JSON.stringify(body);
+
   // Search the json for the record we want
   let element = await JsonHelper.SearchScriptsJson(title);
   
-  // Run PowerShell as a sync task because we do want it to run in the background.
-  if ( req.body == undefined){
-    PowerShell.runScript(element.ps1Path, title.script, undefined, element.logPath)
-  }
-  else {
-    PowerShell.runScript(element.ps1Path, title.script, req.body, element.logPath)
-  }
+  let guid = uuid();
+  let startTime = dt.GetDateTime();
+  await tasksTable.Insert(guid, title, 'Pending', startTime, "Manual", jsonBody);
 
   await res.render('./scripts/run', {
     title: title.script,

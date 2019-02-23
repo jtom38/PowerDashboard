@@ -1,59 +1,48 @@
 var express = require('express');
 var router = express.Router();
-//let tasksPending = require('../../src/sqlite/tasksPending');
-//let sqlLogs = require('../../src/sqlite/logs');
-let sqlTasks = require('../../src/sqlite/TasksRepo');
 
-let sql = require('sqlite3').verbose();
-let db
+var SQLite = require('../../src/sqlite/SQLite');
+var TasksRepo = require('../../src/sqlite/TasksRepo');
+var LogsRepo = require('../../src/sqlite/LogsRepo');
 
-router.get('/', function (req, res, next) {
+let sqlite = new SQLite('./db.sqlite');
+let tasksTable = new TasksRepo(sqlite);
+let logsTable = new LogsRepo(sqlite);
 
-  db = new sql.Database("db.sqlite");
+router.get('/', async function (req, res, next) {
 
-  // Get the records of active
-  db.all("select * from 'tasks' where Status = 'Active'", function (err, active) {
+  let pending = await tasksTable.GetAllStatus('Pending');
+  
+  let active = await tasksTable.GetAllStatus('Active');
 
-    sqlTasks.SelectJoinLogsStatusFinishedTop100(function(err, history){
-      res.render('./tasks/index', { 
-        title: 'Tasks',
-        active: active,
-        history: history
-      });
-    });
+  let finished = await tasksTable.SelectJoinLogsWhereStatusTop100('Finished');
+
+  await res.render('./tasks/index', {
+    title: 'Tasks',
+    active: active,
+    history: finished,
+    pending: pending
   });
 });
 
-router.get('/active', function(req, res, next) {
-  db = new sql.Database("db.sqlite");
+router.get('/active', async function(req, res, next) {
+  
+  let active = await tasksTable.GetAllStatus('Active');
 
-  db.all("select * from 'tasks' where Status = 'Active'", function (err, rows) {
-    if(err) {
-      res.render('./tasks/active', { 
-        title: 'Tasks: Active',
-        tasks: null});
-    }
-    
-    res.render('./tasks/active', { 
-      title: 'Tasks: Active',
-      tasks: rows});
+  await res.render('./tasks/active', { 
+    title: 'Tasks: Active',
+    tasks: active
   });
 
 });
 
-router.get('/history', function(req, res, next) {
-  db = new sql.Database("db.sqlite");
-
-  db.all("select * from 'tasks' where status = 'Finished' order by FinishTime desc limit 100", function (err, rows) {
-    if(err) {
-      res.render('./tasks/history', { 
-        title: 'Tasks: History',
-        tasks: null});
-    }
+router.get('/history', async function(req, res, next) {
+  
+  let finished = await tasksTable.SelectJoinLogsWhereStatusTop100('Finished');
     
-    res.render('./tasks/history', { 
+  await res.render('./tasks/history', { 
       title: 'Tasks: History',
-      tasks: rows});
+      tasks: finished
   });
 });
 

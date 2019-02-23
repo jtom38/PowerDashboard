@@ -11,9 +11,9 @@ class TasksRepo{
         let cmd = ``;
     }
 
-    Insert(TasksID, Name, Status, StartTime, Source){
-        let cmd = `INSERT INTO tasks ( TasksID, Name, Status, StartTime, Source)
-            Values ('${TasksID}', '${Name}', '${Status}', '${StartTime}', '${Source}')`;
+    Insert(TasksID, Name, Status, StartTime, Source, Param){
+        let cmd = `INSERT INTO tasks ( TasksID, Name, Status, StartTime, Source, Param)
+            Values ('${TasksID}', '${Name}', '${Status}', '${StartTime}', '${Source}', '${Param}')`;
         return this.SQLite.run(cmd);
     }
 

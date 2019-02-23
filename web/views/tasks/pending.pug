@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+  section(class="hero is-info")
+    div(class="hero-body")
+      div(class="container")
+        h1(class="title") Tasks: History
+        h2(class="subtitle") Displays all finished tasks.
+
+  br
+  div(class='container is-desktop is-vcentered')
+    if tasks.length >= 1
+      table(class='table is-fullwidth')
+        thead
+          tr
+            th Name
+            th Status
+            th StartTime
+            th FinishTime
+        tfoot
+          tr          
+            th Name
+            th Status
+            th StartTime
+            th FinishTime
+        tbody        
+          each r in tasks
+            tr
+              td #{r.Name}
+              td #{r.Status}
+              td #{r.StartTime}
+              td #{r.FinishTime}
+              td #{r.LogID}
+    else
+      h3(class='is-centered') No active tasks running.

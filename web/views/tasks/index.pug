@@ -33,7 +33,35 @@ block content
               td #{r.StartTime}
     else
       h3(class='is-centered') No active tasks running.
-    
+
+  section(class='section')
+    div(class='container is-fluid')
+      h1(class='title') Tasks: Pending
+      h2(class='subtitle') Showing all pending tasks.
+
+  div(class='container is-desktop is-vcentered is-fluid')
+    if pending.length >= 1
+      table(class='table is-fullwidth')
+        thead
+          tr
+            th Name
+            th Status
+            th StartTime
+        tfoot
+          tr          
+            th Name
+            th Status
+            th StartTime
+        tbody        
+          each r in pending
+            tr
+              td #{r.Name}
+              td #{r.Status}
+              td #{r.StartTime}
+    else
+      h3(class='is-centered') No pending tasks.
+
+
   section(class='section')
     div(class='container is-fluid')
       h1(class='title') Tasks: History
@@ -66,4 +94,4 @@ block content
               td
                 a(class='button' href=`/scripts/${r.Name}/logs/${r.LogsID}`) View Logs
     else
-      h3(class='is-centered') No active tasks running.
+      h3(class='is-centered') No jobs have finished.

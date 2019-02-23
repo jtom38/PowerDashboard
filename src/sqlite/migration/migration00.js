@@ -61,7 +61,7 @@ function EditLogs(callback){
 }
 
 function EditTasks(callback){
-    let cmd = "CREATE TABLE 'tasks' ('TasksID' TEXT NOT NULL,'Name' TEXT, 'Status' TEXT,'StartTime' TEXT, 'FinishTime' TEXT, 'Source' TEXT, PRIMARY KEY('TasksID'))";
+    let cmd = "CREATE TABLE 'tasks' ('TasksID' TEXT NOT NULL,'Name' TEXT, 'Status' TEXT,'StartTime' TEXT, 'FinishTime' TEXT, 'Source' TEXT, 'Param' TEXT, PRIMARY KEY('TasksID'))";
     db.run(cmd, function (err, result) {
         if(err){ return callback(err); }
         
