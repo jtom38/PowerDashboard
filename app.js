@@ -13,6 +13,15 @@ var tasksRouter = require('./web/routes/tasksRouter');
 var apiTasks = require("./web/api/tasksApi");
 var apiLogs = require('./web/api/logsApi');
 
+var EventHandler = require('./src/EventHandler');
+
+var queue = require('./src/queue');
+
+// This should enable the queue check code in the background.
+setInterval( ()=>{
+  console.log("did I kill it again?");
+}, 30000);
+
 var app = express();
 
 // view engine setup
@@ -53,5 +62,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;

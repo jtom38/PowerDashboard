@@ -8,9 +8,9 @@ class SQLite {
     constructor(PathDbFile){
         this.Connection = new sqlite3.Database(PathDbFile, (err) => {
             if(err){
-                console.error(`Unable to connect to DB. ${err}`);
+                //console.error(`Unable to connect to DB. ${err}`);
             } else {
-                console.log(`Connected to DB!`);
+                //console.log(`Connected to DB!`);
             }
         });
     }

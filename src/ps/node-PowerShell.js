@@ -4,7 +4,12 @@ const path = require('path');
 const fs = require('fs');
 const uuid = require('uuid/v4');
 const sqlTasks = require('./sqlite/tasks');
-const dt = require('./DateTime');
+const dt = require('../DateTime');
+
+/*
+    This is a old module that did not support PSCore.
+    Old code that is not getting used.
+*/
 
 function runScript(PathScript, Args, logPath ){
 

@@ -4,11 +4,11 @@ const path = require('path');
 const fs = require('fs');
 const uuid = require('uuid/v4');
 var Promise = require('bluebird');
-var SQLite = require('./sqlite/SQLite');
-var TasksRepo = require('./sqlite/TasksRepo');
-var LogsRepo = require('./sqlite/LogsRepo');
+var SQLite = require('../sqlite/SQLite');
+var TasksRepo = require('../sqlite/TasksRepo');
+var LogsRepo = require('../sqlite/LogsRepo');
 
-const dt = require('./DateTime');
+const dt = require('../DateTime');
 const os = require('os');
 
 let sqlite = new SQLite('./db.sqlite');

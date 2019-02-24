@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var PowerShell = require('../../src/PowerShell');
+var PowerShell = require('../../src/ps/PowerShell');
 var Promise = require('bluebird');
 var SQLite = require('../../src/sqlite/SQLite');
 var TasksRepo = require('../../src/sqlite/TasksRepo');
