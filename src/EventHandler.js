@@ -8,7 +8,7 @@ myEvent.on('say', (msg) =>{
 
 
 let runPsScript = require('./ps/EventRunPsScript');
-myEvent.on('run-ps-script', (PathScript, Name, Args, LogPath) =>{
+myEvent.on('run-ps-script', async (PathScript, Name, Args, LogPath) =>{
     runPsScript(PathScript, Name, Args, LogPath);
 });
 

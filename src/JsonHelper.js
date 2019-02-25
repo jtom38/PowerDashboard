@@ -5,37 +5,34 @@ This is a helper file that currently looks though the json and returns the resul
 let Promise = require('bluebird');
 let scriptsJson = require('../scripts/scripts');
 
-/*
-function SearchScriptsJson(title, callback){
-  scriptsJson.Scripts.forEach(element => {
-    if (element.Name == title){
-      // If we find the one we want, return it
-      callback(null, element);
-    }
+function PromiseGetScriptRecord(Title){
+  return new Promise((resolve, reject) =>{
+    CallBackGetScriptRecord(Title, function (err, res) {
+      if(err){
+        reject(err);
+      }else{
+        resolve(res);
+      }
+    })
   });
 }
-*/
 
-function SearchScriptsJson(title){
-  return new Promise( (resolve, reject) => {
-
-    let returnData;
-    scriptsJson.Scripts.forEach(element => {
-      if(element.Name == title){
-        returnData = element;
-      }
-    });
-    
-    if (returnData == undefined) {
-      return reject(Error("Unable to find the requested element"));
-    }else{
-      return resolve(returnData);
+function CallBackGetScriptRecord(Title, callback) {
+  let returnData;
+  scriptsJson.Scripts.forEach(element => {
+    if(element.Name == Title){
+      returnData = element;
     }
-
   });
-
+  
+  if (returnData == undefined) {
+    return callback(Error("Unable to find the requested element"));
+  }else{
+    return callback(null, returnData);
+  }
 }
 
 module.exports = {
-    SearchScriptsJson
+  PromiseGetScriptRecord,
+  CallBackGetScriptRecord
 }

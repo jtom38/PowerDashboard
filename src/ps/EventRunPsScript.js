@@ -1,8 +1,8 @@
 
 const PowerShell = require('powershell');
-const path = require('path');
-const fs = require('fs');
-const uuid = require('uuid/v4');
+//const path = require('path');
+//const fs = require('fs');
+//const uuid = require('uuid/v4');
 var Promise = require('bluebird');
 var SQLite = require('../sqlite/SQLite');
 var TasksRepo = require('../sqlite/TasksRepo');
@@ -15,8 +15,10 @@ let sqlite = new SQLite('./db.sqlite');
 let tasksTable = new TasksRepo(sqlite);
 let logsTable = new LogsRepo(sqlite);
 
-module.exports = (PathScript, Name, Args, LogPath) => {
+module.exports = async (PathScript, SqlRow) => {
 
+    let Name = SqlRow.Name;
+    let Args = SqlRow.Param
     // This contains the output from the script
     let output = [];
 
@@ -30,34 +32,38 @@ module.exports = (PathScript, Name, Args, LogPath) => {
     OnErrorOutput(ps);
     OnEnd(ps);
 
+    let ArgsArray = await ParseArgs(Args);
+    script = PathScript;
+    ArgsArray.forEach(param =>{
+        script = script + param
+    });
+
+    // Generate a new ID for SQL
+    //guid = uuid();
+    startTime = dt.GetDateTime();
+    if(os.platform == 'win32') {
+        ps(script, {
+            executionPolicy: 'Bypass',
+            noProfile: true,
+        });
+    } else {
+        ps(script, {
+            executionPolicy: 'Bypass',
+            noProfile: true,
+            PSCore: true
+        });
+    }
+
     // Process the args and replace what we got so we can use it with PS
     ParseArgs(Args)
         .then(ArgsArray => {
             Args = ArgsArray;
 
-            script = PathScript;
-            ArgsArray.forEach(param =>{
-                script = script + param
-            });
-        
-            // Generate a new ID for SQL
-            guid = uuid();
-            startTime = dt.GetDateTime();
+
         })
-        .then(tasksTable.Insert(guid, Name, 'Active', startTime, "Manual"))
+        
         .then(insertResult => {
-            if(os.platform == 'win32') {
-                ps(script, {
-                    executionPolicy: 'Bypass',
-                    noProfile: true,
-                });
-            } else {
-                ps(script, {
-                    executionPolicy: 'Bypass',
-                    noProfile: true,
-                    PSCore: true
-                });
-            }
+
         })
 
 }
@@ -110,4 +116,19 @@ function OnEnd(PowerShell){
             }
         }
     });
+}
+
+async function ParseArgs(Args){
+    return new Promise( (resolve, reject) => {
+        let ArgsArray = [];
+        let a = Object.keys(Args);
+        a.forEach(key =>{
+            if(Args[key] != ""){
+                let s = ` -${key} ${Args[key]}`;
+                ArgsArray.push(s);
+            }
+        });
+
+        return resolve(ArgsArray);
+    })
 }
